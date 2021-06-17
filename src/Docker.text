@@ -1,1 +1,66 @@
-demo
+mac 运行 
+
+1 打开网址: https://hub.docker.com
+
+2 在底部找到 Desktop 并点击
+
+3 选择下载
+
+www.jianshu.com/p/4c08e7613bc4
+
+
+终端:  
+docker ps -a
+
+docker images
+
+docker run -d -p 80:80 docker/getting-started
+
+// 80:80被占用了, 就改为81: ---》  81:80
+
+
+打开浏览器, 输入 http://localhost/tutorial/ , 能打开就是正常的
+
+
+
+docker run -d -p 81:80 --name webserver nginx
+
+
+
+加速器:
+http://f1361db2.m.daocloud.io
+
+or
+
+http://hub-mirror.c.163.com
+
+
+3、如何配置加速器？
+
+Docker for Mac的用户，可以参考以下配置步骤：
+
+右键点击桌面顶栏的 docker 图标，选择 Preferences ，在 Docker Engine 标签下的 Registry mirrors 列表中将镜像地址的数组:
+
+"registry-mirrors": ["https://你的前缀地址.mirror.aliyuncs.com"]
+"registry-mirrors": ["http://hub-mirror.c.163.com"]
+
+
+4、检验加速器是否配置成功
+
+执行 docker info 命令，返回结果中包含以下内容，则说明配置成功。
+
+https://你的前缀地址.mirror.aliyuncs.com/
+
+
+
+kitematic:
+打开  https://kitematic.com
+
+
+
+
+docker pull php
+
+
+
+
