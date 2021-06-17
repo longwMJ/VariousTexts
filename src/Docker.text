@@ -1,10 +1,13 @@
 mac 运行 
 
+https://www.bilibili.com/video/BV16E411u75h?from=search&seid=11280587410055945634
+
 1 打开网址: https://hub.docker.com
 
 2 在底部找到 Desktop 并点击
 
 3 选择下载
+
 
 www.jianshu.com/p/4c08e7613bc4
 
@@ -13,6 +16,18 @@ www.jianshu.com/p/4c08e7613bc4
 docker ps -a
 
 docker images
+
+
+// docker pull : 从镜像仓库中拉取或者更新指定镜像
+
+// docker pull php
+
+docker run -d -p 82:80 php
+
+
+docker run -d -p 81:80 --name webserver nginx
+
+
 
 docker run -d -p 80:80 docker/getting-started
 
@@ -24,6 +39,16 @@ docker run -d -p 80:80 docker/getting-started
 
 
 docker run -d -p 81:80 --name webserver nginx
+
+
+
+
+ docker run hello-world
+
+
+
+ github.com/AliyunContainerService/k8s-for-docker-desktop
+
 
 
 
@@ -44,6 +69,8 @@ Docker for Mac的用户，可以参考以下配置步骤：
 "registry-mirrors": ["https://你的前缀地址.mirror.aliyuncs.com"]
 "registry-mirrors": ["http://hub-mirror.c.163.com"]
 
+"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
+
 
 4、检验加速器是否配置成功
 
@@ -59,8 +86,8 @@ kitematic:
 
 
 
-docker pull php
 
-
-
-
+镜象下载:
+保持 docker运行
+打开 k8s-for-docker-desktop-master
+输入./load_images.sh  命令
