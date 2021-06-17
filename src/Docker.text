@@ -1,5 +1,7 @@
 mac 运行 
 
+https://www.bilibili.com/video/BV1Mv411q7de?from=search&seid=6027334197932258647
+
 https://www.bilibili.com/video/BV16E411u75h?from=search&seid=11280587410055945634
 
 1 打开网址: https://hub.docker.com
@@ -46,7 +48,7 @@ docker run -d -p 81:80 --name webserver nginx
  docker run hello-world
 
 
-
+阿里: 
  github.com/AliyunContainerService/k8s-for-docker-desktop
 
 
@@ -91,3 +93,86 @@ kitematic:
 保持 docker运行
 打开 k8s-for-docker-desktop-master
 输入./load_images.sh  命令
+查看 docker images
+启用 docker -》 Preferences -》Kubernetes -》Enable Kubernetes(选中)
+校验 kubectl cluster-info   ||    kubectl get nodes    ||       kubectl get pods -n kube-system
+
+
+
+配置 Kubernetes 控制台
+部署 Kubernetes dashboard:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.4/aio/deploy/recommended.yaml
+
+
+校验: kubectl get pods -n kube-system
+
+开启 API Server 访问代理: kubectl proxy
+
+通过如下 URL 访问 Kubernetes dashboard
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+用令牌登陆(输入命令):
+
+TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
+
+
+
+php 安装:
+搜索: docker search php
+
+选择其中一个下载: docker pull webdevops/php-nginx 
+
+docker -d --name php-nginx -p 9998:80 webdevops/php-nginx
+
+docker run -d --name php-nginx -p 9998:80 webdevops/php-nginx (目前打开网页 http://localhost:9998/ 是403)
+
+
+打开https://registry.hub.docker.com/ 搜索webdevops/php-nginx 能找到对应的官方文档(链接: Documentation (Tags, Environment variables) on ReadTheDocs.io)
+发现一行文字: WEB_DOCUMENT_ROOT	Document ---- root for webserver	----   /app
+
+我们打开 Docker Desktop, 找到新建的php-nginx --》 点击cli --》 弹出对应终端 --》 输入ls --》 找到app
+  --》 cd app --》 ls (没有内容)  --》 vi index.php --》在终端输入php代码:
+
+// https://www.jianshu.com/p/f29a91aa3127
+
+i (进入插入模式)
+
+
+<?php
+
+phpinfo();
+
+?>
+
+    ESC    退出输入模式，切换到命令模式
+
+
+在命令模式下按下 :（英文冒号）就进入了底线命令模式。
+
+底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。
+
+在底线命令模式中，基本的命令有（已经省略了冒号）：
+
+q 　　退出程序
+
+w 　　保存文件
+
+按ESC键可随时退出底线命令模式。
+
+
+保存命令
+:w!
+
+再次打开 http://localhost:9998/ 能正常运行
+
+exit 关掉
+
+
+
+以上是复杂版 之后是简单版
+
+
+
