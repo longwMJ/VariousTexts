@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+            position:absolute;
+            top: 50px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="go" id="btn1" onclick="starMove()">
+    <div id="div1" ></div>
+    <script>
+        var timer = null;
+        function starMove () {
+            var oDiv = document.getElementById('div1');
+            clearInterval(timer);
+            timer =  setInterval(() => {
+                var speed = 1;
+                console.log('oDiv.offsetLeft:', oDiv.offsetLeft)
+                if(oDiv.offsetLeft >= 300) {
+                    clearInterval(timer);
+                }else {
+                    oDiv.style.left =  `${oDiv.offsetLeft + speed}px` ;
+
+                }
+
+            }, 30)
+        }
+    </script>
+</body>
+</html>

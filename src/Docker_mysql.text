@@ -1,0 +1,51 @@
+https://www.bilibili.com/video/BV1ba4y1Y7tU?from=search&seid=12115236666249930057
+
+搜索: docker search mysql
+
+找到需要的 -》 mysql(收藏最多)
+
+安装: docker pull mysql
+
+
+运行mysql
+// docker run -it --name My-mysql -p 13306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7
+
+// --name My-mysql: 运行服务名字
+
+//   /Users/mingjixue/Desktop/dockerMysql:/app
+
+docker run -p 12345:3306 --name mysql -v /Users/mingjixue/Desktop/dockerMysql/conf:/etc/mysql/conf.d -v /Users/mingjixue/Desktop/dockerMysql/logs:/logs -v /Users/mingjixue/Desktop/dockerMysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD-123456 -d mysql:5.6                                             
+
+
+--name mysql: 运行服务名字
+
+-v /Users/mingjixue/Desktop/dockerMysql/conf:/etc/mysql/conf.d     主机conf挂载在dockerMysql目录下
+
+-v /Users/mingjixue/Desktop/dockerMysql/logs:/logs    主机logs挂载在dockerMysql目录下
+
+-v /Users/mingjixue/Desktop/dockerMysql/data:/var/lib/mysql   主机data挂载在dockerMysql目录下
+
+
+-e MYSQL_ROOT_PASSWORD-123456  初始化root用户密码
+
+-d mysql:5.6  后台程序运行mysql5.6
+
+
+校验:  docker exec -it MYSQL 
+
+
+
+
+
+
+
+
+
+
+
+
+
+南山区高新技术产业园源兴科技大厦东座4层
+
+
+

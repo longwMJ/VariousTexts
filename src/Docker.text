@@ -175,4 +175,25 @@ exit 关掉
 以上是复杂版 之后是简单版
 
 
+关掉 webdevops/php-nginx
 
+添加地址:
+右键点击桌面顶栏的 docker 图标，选择 Preferences --》
+Resources -》 File sharing -》 + --》 添加你选择的文件夹(dockerG)
+
+
+输入:
+docker run -d --name php-nginx -p 9998:80 -v /Users/mingjixue/Desktop/dockerG:/app webdevops/php-nginx
+
+访问: 
+报 403错误 http://localhost:9998/
+
+打开dockerG文件夹, 创建index.php文件, 输入:
+
+<?php
+
+ echo "hello docker php -xmj"
+
+?>
+
+保存, 再次访问http://localhost:9998/网页, 成功!!
