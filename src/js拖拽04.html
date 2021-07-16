@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #divBig {
+        width: 600px;
+        height: 600px;
+        background: #ccc;
+        position: relative;
+      }
+      #div1 {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        /* top: 50px;
+            left: 0px; */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        const oDivBig = document.getElementById("divBig");
+        const oDiv = document.getElementById("div1");
+        // let disX = 0;
+        let disY = 0;
+        oDiv.onmousedown = function (ev) {
+          const oEvent = ev || event;
+          // disX = oEvent.clientX - oDiv.offsetLeft;
+          disY = oEvent.clientY - oDiv.offsetTop;
+
+          document.onmousemove = function (ev) {
+            const oEvent = ev || event;
+
+            // let divLeft = oEvent.clientX - disX;
+            let divTop = oEvent.clientY - disY;
+   
+            // const maxWidth = oDivBig.offsetWidth-oDiv.offsetWidth;
+            const maxHeight = oDivBig.offsetHeight -oDiv.offsetHeight;
+
+            // if(divLeft < 50) {
+            //   divLeft = 0;
+
+            // }else if(divLeft > maxWidth -50)  {
+            //   divLeft = maxWidth
+            // }
+
+            // if(divTop < 0) {
+            if(divTop < 50) {
+              divTop = 0;
+            } else if( divTop > maxHeight - 50) {
+              divTop = maxHeight;
+            }
+
+            // oDiv.style.left = `${divLeft < 0 ?  0 : divLeft}px`;
+            oDiv.style.top = `${divTop < 0 ?  0 : divTop}px`;
+       
+          };
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          };
+          return false;
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="divBig">
+    <div id="div1"></div>
+
+  </div>
+  </body>
+</html>

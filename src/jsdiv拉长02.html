@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #panel {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+      }
+      #dragIcon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="panel">
+      <div id="dragIcon"></div>
+    </div>
+    <script>
+      window.onload = function () {
+        // 1. 获取两个大小div
+        var oPanel = document.getElementById("panel");
+        var oDragIcon = document.getElementById("dragIcon");
+        // 定义4个变量
+        // var disY = 0; //鼠标按下时光标的Y值
+        // var disH = 0; // 拖拽前div的高
+        //3. 给小div加点击事件
+        oDragIcon.onmousedown = function (ev) {
+          var disY = 0; //鼠标按下时光标的Y值
+          var disH = 0; // 拖拽前div的高
+
+          var ev = ev || window.event;
+          disY = ev.clientY; // 获取鼠标按下时光标Y的值
+          disH = oDragIcon.offsetHeight; // 获取拖拽前div的高
+          document.onmousemove = function (ev) {
+            var ev = ev || window.event;
+            //拖拽时为了对宽和高 限制一下范围，定义两个变量
+            var H = ev.clientY - disY + disH;
+            if (H < 100) {
+              H = 100;
+            }
+            if (H > 500) {
+              H = 500;
+            }
+            oPanel.style.height = H + "px"; // 拖拽后物体的高
+          };
+          document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          };
+        };
+      };
+    </script>
+  </body>
+</html>

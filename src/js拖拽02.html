@@ -21,19 +21,22 @@
         let disX = 0;
         let disY = 0;
         oDiv.onmousedown = function (ev) {
+          // document.onmousedown = function (ev) {
           const oEvent = ev || event;
           disX = oEvent.clientX - oDiv.offsetLeft;
           disY = oEvent.clientY - oDiv.offsetTop;
 
-          oDiv.onmousemove = function (ev) {
+          // oDiv.onmousemove = function (ev) {
+          document.onmousemove = function (ev) {
             const oEvent = ev || event;
             oDiv.style.left = `${oEvent.clientX - disX}px`;
             oDiv.style.top = `${oEvent.clientY - disY}px`;
           };
-          oDiv.onmouseup = () => {
-            oDiv.onmousemove = null;
-            oDiv.onmouseup = null;
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
           };
+          return false;
         };
       };
     </script>
